@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteador de Números</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="https://img.icons8.com/color/48/000000/dice.png" alt="Logo Dados">
+                <h1>NUMBERS</h1>
+            </div>
+            <div class="status">
+                <p>ONLINE - GRATUITO</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="title-section">
+                <h2>SORTEADOR<br>DE NÚMEROS</h2>
+            </section>
+
+            <section class="draw-section">
+                <div class="draw-header">
+                    <h3>QUERO SORTEAR:</h3>
+                    <p>Defina o intervalo e a quantidade de números, clique em "Sortear" e veja os resultados na tela. É rápido e fácil!</p>
+                </div>
+
+                <div class="draw-form">
+                    <div class="inputs-container">
+                        <div class="input-group">
+                            <label for="quantity">NÚMEROS</label>
+                            <input type="number" id="quantity" value="2" min="1">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="min">DE</label>
+                            <input type="number" id="min" value="1" min="0">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="max">DE</label>
+                            <input type="number" id="max" value="100" min="1">
+                        </div>
+                    </div>
+                    
+                    <div class="toggle-container">
+                        <span class="toggle-text">Não repetir número</span>
+                        <label class="switch">
+                            <input type="checkbox" id="no-repeat">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <button id="draw-button" class="draw-button">SORTEAR <span>→</span></button>
+                </div>
+
+                <div id="result" class="result-area">
+                    <!-- Resultados serão exibidos aqui pelo JavaScript -->
+                </div>
+            </section>
+
+            <section class="info-section">
+                <div class="info-item">
+                    <h4>Como funciona o sorteador de números?</h4>
+                    <p>O sorteador utiliza um algoritmo de geração aleatória para criar números dentro do intervalo especificado pelo usuário.</p>
+                </div>
+
+                <div class="info-item">
+                    <h4>Posso escolher o intervalo dos números?</h4>
+                    <p>Sim, você pode definir os valores mínimo e máximo para o intervalo dos números sorteados.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
