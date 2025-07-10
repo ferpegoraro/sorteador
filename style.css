@@ -378,7 +378,7 @@ input:checked:hover + .slider {
 }
 
 .result-number {
-    background-color: #9370DB;
+    background: linear-gradient(145deg, #9370DB, #8a5cd1);
     color: #ffffff;
     width: 60px;
     height: 60px;
@@ -388,16 +388,69 @@ input:checked:hover + .slider {
     align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
-    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     box-shadow: 0 5px 15px rgba(147, 112, 219, 0.5);
     transform: scale(0);
+    opacity: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.no-show {
+    display: none;
+}
+
+.show {
+    display: flex;
 }
 
 @keyframes popIn {
-    0% { transform: scale(0); }
-    70% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+    0% { transform: scale(0); opacity: 0; }
+    70% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
 }
+
+@keyframes glow {
+    0% { box-shadow: 0 5px 15px rgba(147, 112, 219, 0.5); }
+    50% { box-shadow: 0 5px 25px rgba(147, 112, 219, 0.8); }
+    100% { box-shadow: 0 5px 15px rgba(147, 112, 219, 0.5); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -100% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.result-number.show {
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+               glow 2s ease-in-out infinite 0.5s;
+    display: flex;
+}
+
+.result-number.show::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: rotate(30deg);
+    animation: shimmer 2s infinite;
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+}
+
+/* Delay para cada número aparecer sequencialmente */
+.result-number:nth-child(1).show { animation-delay: 0.1s; }
+.result-number:nth-child(2).show { animation-delay: 0.2s; }
+.result-number:nth-child(3).show { animation-delay: 0.3s; }
+.result-number:nth-child(4).show { animation-delay: 0.4s; }
+.result-number:nth-child(5).show { animation-delay: 0.5s; }
+.result-number:nth-child(6).show { animation-delay: 0.6s; }
+.result-number:nth-child(7).show { animation-delay: 0.7s; }
+.result-number:nth-child(8).show { animation-delay: 0.8s; }
+.result-number:nth-child(9).show { animation-delay: 0.9s; }
+.result-number:nth-child(10).show { animation-delay: 1s; }
 
 /* Seção de informações */
 .info-section {
