@@ -44,25 +44,44 @@ function drawNumbers(draw){
     try {
         if (draw.noRepeat) {
             // Sorteio sem repetição
+            // 1. Primeiro criamos um array com todos os números possíveis no intervalo
             const availableNumbers = []
             for (let i = draw.min; i <= draw.max; i++) {
                 availableNumbers.push(i)
             }
             
-            // Embaralhar os números
+            // 2. Embaralhar os números usando o algoritmo Fisher-Yates (ou Knuth)
+            // Este é um algoritmo eficiente que garante que cada permutação é igualmente provável
             for (let i = availableNumbers.length - 1; i > 0; i--) {
+                // 2.1. Para cada posição, começando do final do array:
+                // Escolhemos um índice aleatório de 0 até i (inclusive)
                 const j = Math.floor(Math.random() * (i + 1))
+                
+                // 2.2. Trocamos o elemento na posição atual (i) com o elemento na posição aleatória (j)
+                // Esta é uma técnica de desestruturação para trocar valores sem usar variável temporária
                 const temp = availableNumbers[i]
                 availableNumbers[i] = availableNumbers[j]
                 availableNumbers[j] = temp
+                
+                // 2.3. A cada iteração, reduzimos o intervalo de embaralhamento
+                // Os elementos já processados (no final do array) não são mais considerados
             }
             
-            // Pegar os primeiros 'quantity' números
+            // 3. Pegar apenas a quantidade solicitada de números do início do array embaralhado
             return availableNumbers.slice(0, draw.quantity)
         } else {
             // Sorteio com possível repetição
+            // 1. Neste caso, sorteamos cada número independentemente
             for(let i = 0; i < draw.quantity; i++){
+                // 1.1. Geramos um número aleatório dentro do intervalo [min, max]
+                // Math.random() gera um decimal entre 0 (inclusive) e 1 (exclusivo)
+                // Multiplicamos pelo tamanho do intervalo (max - min + 1)
+                // Arredondamos para baixo com Math.floor
+                // Somamos o valor mínimo para deslocar o intervalo
                 const number = Math.floor(Math.random() * (draw.max - draw.min + 1)) + draw.min
+                
+                // 1.2. Adicionamos o número ao array de resultados
+                // Como não verificamos se o número já existe, podem ocorrer repetições
                 numbers.push(number)
             }
             return numbers
